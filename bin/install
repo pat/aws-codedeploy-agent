@@ -376,7 +376,8 @@ EOF
     else
       #use -n for non-interactive mode
       #use -o to not overwrite config files unless they have not been changed
-      install_cmd = ['/usr/bin/gdebi', '-n', '-o', 'Dpkg::Options::=--force-confdef', '-o', 'Dkpg::Options::=--force-confold']
+      # install_cmd = ['/usr/bin/gdebi', '-n', '-o', 'Dpkg::Options::=--force-confdef', '-o', 'Dkpg::Options::=--force-confold']
+      install_cmd = ["dpkg", "--ignore-depends=ruby2.0,ruby2.1,ruby2.2,ruby2.3", "-i"]
       install_from_s3(region, bucket, version_file_key, @type, install_cmd)
       do_sanity_check('/usr/sbin/service')
     end
